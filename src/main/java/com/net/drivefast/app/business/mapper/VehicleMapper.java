@@ -28,7 +28,12 @@ public class VehicleMapper {
 
     public VehicleResponseDTO toResponse(Vehicle vehicle){
         return new VehicleResponseDTO(
-            
+            vehicle.getId(),
+            vehicle.getBrand(),
+            vehicle.getModel(),
+            vehicle.getLicensePlate(),
+            vehicle.getDiaryValue(),
+            vehicle.getAvailable()
         );
     }
 }

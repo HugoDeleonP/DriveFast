@@ -25,7 +25,7 @@ public class ClientMapper {
         );
     }
 
-    public ClientResponseDTO toResponseDTO(Client client){
+    public ClientResponseDTO toResponse(Client client){
         return new ClientResponseDTO(
             client.getId(),
             client.getName(),
