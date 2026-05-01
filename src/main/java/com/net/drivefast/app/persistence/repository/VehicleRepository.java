@@ -10,5 +10,5 @@ import com.net.drivefast.app.domain.Vehicle;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long>{
     
-    List<Vehicle> findByAvailable(Boolean available);
+    List<Vehicle> findByAvailableTrue(Boolean available);
 }
