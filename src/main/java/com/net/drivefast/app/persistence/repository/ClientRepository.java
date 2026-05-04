@@ -12,11 +12,11 @@ import com.net.drivefast.app.persistence.projection.ClientCostProjection;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
 
-    @Query(name = """
-            SELECT c.name, r.total_value
+    @Query(value = """
+            SELECT c.name as name_client, SUM(r.total_value) as cost_total
             FROM client c
             INNER JOIN rental r
-            ON r.client_id = c.id
+            ON c.id = r.client_id
             GROUP BY c.name
             """
     , nativeQuery = true)
