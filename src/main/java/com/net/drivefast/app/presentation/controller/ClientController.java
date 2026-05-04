@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.net.drivefast.app.business.service.ClientService;
-import com.net.drivefast.app.persistence.projection.ClientCostProjection;
 import com.net.drivefast.app.presentation.dto.client.ClientCostDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientCreateDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientResponseDTO;
@@ -33,37 +32,37 @@ public class ClientController {
     @PostMapping
     public ResponseEntity<ClientResponseDTO> save(@RequestBody ClientCreateDTO dto){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(clientService.save(dto));
     }
 
     @GetMapping
     public ResponseEntity<List<ClientResponseDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(clientService.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> findById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(clientService.findById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> updateById(@PathVariable("id") Long id, @RequestBody ClientUpdateDTO dto){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(clientService.updateById(id, dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<MessageDTO> deleteById(@PathVariable("id") Long id ){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(clientService.deleteById(id));
     }
 
     @GetMapping("/report-costs")
     public ResponseEntity<List<ClientCostDTO>> reportCosts(){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);        
+            .body(clientService.reportCosts());        
     }
 
 
