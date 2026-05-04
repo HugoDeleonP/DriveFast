@@ -3,6 +3,8 @@ package com.net.drivefast.app.business.mapper;
 import org.springframework.stereotype.Component;
 
 import com.net.drivefast.app.domain.Client;
+import com.net.drivefast.app.persistence.projection.ClientCostProjection;
+import com.net.drivefast.app.presentation.dto.client.ClientCostDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientCreateDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientResponseDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientUpdateDTO;
@@ -31,6 +33,13 @@ public class ClientMapper {
             client.getName(),
             client.getCnh(),
             client.getEmail()
+        );
+    }
+
+    public ClientCostDTO toResponseCosts(ClientCostProjection projection){
+        return new ClientCostDTO(
+            projection.getNameClient(),
+            projection.getCostTotal()
         );
     }
 }

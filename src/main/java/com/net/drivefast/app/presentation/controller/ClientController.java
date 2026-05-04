@@ -3,18 +3,19 @@ package com.net.drivefast.app.presentation.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.net.drivefast.app.business.service.ClientService;
 import com.net.drivefast.app.persistence.projection.ClientCostProjection;
+import com.net.drivefast.app.presentation.dto.client.ClientCostDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientCreateDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientResponseDTO;
 import com.net.drivefast.app.presentation.dto.client.ClientUpdateDTO;
@@ -30,13 +31,13 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ClientResponseDTO> save(ClientCreateDTO dto){
+    public ResponseEntity<ClientResponseDTO> save(@RequestBody ClientCreateDTO dto){
         return ResponseEntity.status(HttpStatus.OK)
             .body(null);
     }
 
     @GetMapping
-    public ResponseEntity<ClientResponseDTO> findAll(){
+    public ResponseEntity<List<ClientResponseDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK)
             .body(null);
     }
@@ -48,7 +49,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClientResponseDTO> updateById(@PathVariable("id") Long id, ClientUpdateDTO dto){
+    public ResponseEntity<ClientResponseDTO> updateById(@PathVariable("id") Long id, @RequestBody ClientUpdateDTO dto){
         return ResponseEntity.status(HttpStatus.OK)
             .body(null);
     }
@@ -60,7 +61,7 @@ public class ClientController {
     }
 
     @GetMapping("/report-costs")
-    public ResponseEntity<List<ClientCostProjection>> reportCosts(){
+    public ResponseEntity<List<ClientCostDTO>> reportCosts(){
         return ResponseEntity.status(HttpStatus.OK)
             .body(null);        
     }
