@@ -58,8 +58,16 @@ public class RentalService {
 
     public MessageDTO deleteById(Long id){
 
-        rentalRepository.findById(id)
-            .orElseThrow( () -> new RuntimeException(""));
+        Rental rental = rentalRepository.findById(id)
+            .orElseThrow( () -> new RuntimeException("Locação não encontrada"));
+
+        Vehicle vehicleSearch = vehicleRepository.findById(rental.getVehicle().getId())
+            .orElseThrow( () -> new RuntimeException("Veículo não encontrado"));
+
+        vehicleSearch.setAvailable(true);
+        vehicleRepository.save(vehicleSearch);
+
+        rentalRepository.deleteById(id);
 
         return new MessageDTO("Locação deletada com sucesso");
     }
