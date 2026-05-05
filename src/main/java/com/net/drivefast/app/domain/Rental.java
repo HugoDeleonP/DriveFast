@@ -40,5 +40,9 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
+
+    public Rental(Integer days) {
+        this.days = days;
+    }
     
 }

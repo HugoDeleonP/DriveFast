@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.net.drivefast.app.domain.Rental;
 import com.net.drivefast.app.presentation.dto.rental.RentalResponseDTO;
+import com.net.drivefast.app.presentation.dto.rental.RentalCreateDTO;
+
 
 @Component
 public class RentalMapper {
@@ -17,4 +19,10 @@ public class RentalMapper {
             rental.getVehicle().getModel()
         );
     }
+
+    public Rental toEntity(RentalCreateDTO dto){
+        return new Rental(dto.days());
+    }
+    
+       
 }

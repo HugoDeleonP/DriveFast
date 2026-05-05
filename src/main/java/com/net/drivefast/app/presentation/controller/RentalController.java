@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,27 +27,27 @@ public class RentalController {
     private final RentalService rentalService;
 
     @PostMapping
-    public ResponseEntity<RentalResponseDTO> save(RentalCreateDTO dto){
+    public ResponseEntity<RentalResponseDTO> save(@RequestBody RentalCreateDTO dto){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);        
+            .body(rentalService.save(dto));        
     }
 
     @GetMapping
     public ResponseEntity<List<RentalResponseDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(rentalService.findAll());
     }
 
-    @DeleteMapping
-    public ResponseEntity<MessageDTO> deleteById(){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessageDTO> deleteById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(rentalService.deleteById(id));
     }
 
     @GetMapping("/client/{clientId}")
-    public ResponseEntity<RentalResponseDTO> searchAllByClientId(@PathVariable("clientId") Long clientId){
+    public ResponseEntity<List<RentalResponseDTO>> searchAllByClientId(@PathVariable("clientId") Long clientId){
         return ResponseEntity.status(HttpStatus.OK)
-            .body(null);
+            .body(rentalService.searchAllByClientId(clientId));
     }
 
 }
